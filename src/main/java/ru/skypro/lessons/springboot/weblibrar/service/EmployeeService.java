@@ -10,4 +10,7 @@ public interface EmployeeService {
     String getMinSolary();
     int getSumAllSolary();
     String getHighSolary();
+    void deleteId(int id);
+
+
 }

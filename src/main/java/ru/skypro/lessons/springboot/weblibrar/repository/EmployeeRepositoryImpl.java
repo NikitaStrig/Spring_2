@@ -10,11 +10,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     // Коллекция для имитации данных
     private final List<Employee> employeeList = List.of(
-            new Employee("Koka", 95000),
-            new Employee("Dima", 102000),
-            new Employee("Lera", 500000),
-            new Employee("Mary", 340000),
-            new Employee("Kokaf", 450000));
+            new Employee(1,"Koka", 95000),
+            new Employee(2,"Dima", 102000),
+            new Employee(3,"Lera", 500000),
+            new Employee(4,"Mary", 340000),
+            new Employee(5,"Kokaf", 450000));
 
     @Override
     public List<Employee> getAllEmployees() {
@@ -72,5 +72,14 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         return nameavg;
     }
+    @Override
+    public void deleteId(int id){
+        employeeList.removeIf(employee -> employee.getId() == id);
+}
+
+
+
+
+
 
 }

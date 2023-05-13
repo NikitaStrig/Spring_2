@@ -1,10 +1,25 @@
 package ru.skypro.lessons.springboot.weblibrar.controller;
 
 public class Employee {
+    private int id;
     private String name;
     private int salary;
 
-    public Employee(String name, int salary) {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Employee(int id, String name, int salary) {
+        this.id = id;
         this.name = name;
         this.salary = salary;
     }

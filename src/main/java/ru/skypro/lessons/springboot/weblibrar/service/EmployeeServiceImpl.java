@@ -3,6 +3,7 @@ package ru.skypro.lessons.springboot.weblibrar.service;
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrar.controller.Employee;
 import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepository;
+import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepositoryImpl;
 
 import java.util.List;
 
@@ -29,6 +30,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.getSumAllSolary();
     }
     public String getHighSolary() {return employeeRepository.getHighSolary();}
+
+    @Override
+    public void deleteId(int id) {
+
+    }
+
+
+
+
 }
 
 

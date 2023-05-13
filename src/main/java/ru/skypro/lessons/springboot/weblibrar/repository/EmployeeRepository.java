@@ -13,4 +13,7 @@ public interface EmployeeRepository {
 
     int getSumAllSolary();
     String getHighSolary();
+
+    void deleteId(int id);
+
 }
