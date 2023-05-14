@@ -39,27 +39,16 @@ public class EmployeeController {
     }
     @GetMapping("/{id}")
     public String getId(@PathVariable int id) {
-        String idf = "";
-        for (int i = 0; i < employeeService.getAllEmployees().size() ; i++) {
-            if (employeeService.getAllEmployees().get(i).getId() == id){
-                idf = employeeService.getAllEmployees().get(i).getName() + " " + employeeService.getAllEmployees().get(i).getSalary();
-            }
-        }
-        return idf;
+      return employeeService.getSearchId(id);
+
     }
     @GetMapping("/salaryHigherThan")
     public String getEmployeesWithSalaryHigherThan(@RequestParam("salary") Integer salary) {
-        String getEmp = " ";
-        for (int i = 0; i < employeeService.getAllEmployees().size(); i++) {
-            if (employeeService.getAllEmployees().get(i).getSalary() > salary) {
-                 getEmp = getEmp + "\n" + employeeService.getAllEmployees().get(i).getName();
-            }
-        }
-        return getEmp;
+        return employeeService.getsalaryHigherThan(salary);
     }
     @DeleteMapping("/delete/{id}")
     public void delId(@PathVariable("id") int id) {
-        ;
+        employeeService.deleteId(id);
 
     }
     @PostMapping

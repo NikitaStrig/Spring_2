@@ -41,6 +41,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.getSearchId(id);
     }
 
+    @Override
+    public String getsalaryHigherThan(int salary) {
+        return employeeRepository.getsalaryHigherThan(salary);
+    }
+
 
 }
 

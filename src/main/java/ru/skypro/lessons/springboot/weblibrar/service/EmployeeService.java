@@ -12,6 +12,7 @@ public interface EmployeeService {
     String getHighSolary();
     void deleteId(int id);
     String getSearchId(int id);
+    String getsalaryHigherThan(int salary);
 
 
 }

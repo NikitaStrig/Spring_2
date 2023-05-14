@@ -74,7 +74,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
    @Override
     public void deleteId(int id){
-        employeeList.removeIf(employeeList -> employeeList.getId() == id);
+        employeeList.removeIf(employee -> employee.getId() == id);
 }
 
     @Override
@@ -86,6 +86,16 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             }
         }
         return idf;
+    }
+
+    public String getsalaryHigherThan(int salary){
+        String getEmp = " ";
+        for (int i = 0; i < employeeList.size(); i++) {
+            if (employeeList.get(i).getSalary() > salary) {
+                getEmp = getEmp + "\n" + employeeList.get(i).getName();
+            }
+        }
+        return getEmp;
     }
 
 
