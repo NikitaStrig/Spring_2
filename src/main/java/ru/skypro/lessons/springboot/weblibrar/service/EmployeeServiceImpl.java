@@ -33,10 +33,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteId(int id) {
-
+       employeeRepository.deleteId(id);
     }
 
-
+    @Override
+    public String getSearchId(int id) {
+        return employeeRepository.getSearchId(id);
+    }
 
 
 }

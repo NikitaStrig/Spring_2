@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.skypro.lessons.springboot.weblibrar.service.EmployeeService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/employee")
@@ -18,7 +19,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<Employee> showCounter() {
+    public List<Employee> getAllEmp() {
         return employeeService.getAllEmployees();
     }
     @GetMapping("/salary/max")
@@ -36,30 +37,29 @@ public class EmployeeController {
     @GetMapping("high-salary")
     public String hsalary() {return employeeService.getHighSolary();
     }
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public String getId(@PathVariable int id) {
         String idf = "";
-        for (int i = 0; i < showCounter().size() ; i++) {
-            if (showCounter().get(i).getId() == id){
-                idf = showCounter().get(i).getName() + " " + showCounter().get(i).getSalary();
+        for (int i = 0; i < employeeService.getAllEmployees().size() ; i++) {
+            if (employeeService.getAllEmployees().get(i).getId() == id){
+                idf = employeeService.getAllEmployees().get(i).getName() + " " + employeeService.getAllEmployees().get(i).getSalary();
             }
         }
         return idf;
     }
     @GetMapping("/salaryHigherThan")
     public String getEmployeesWithSalaryHigherThan(@RequestParam("salary") Integer salary) {
-
         String getEmp = " ";
-        for (int i = 0; i < showCounter().size(); i++) {
-            if (showCounter().get(i).getSalary() > salary) {
-                 getEmp = getEmp + "\n" + showCounter().get(i).getName();
+        for (int i = 0; i < employeeService.getAllEmployees().size(); i++) {
+            if (employeeService.getAllEmployees().get(i).getSalary() > salary) {
+                 getEmp = getEmp + "\n" + employeeService.getAllEmployees().get(i).getName();
             }
         }
         return getEmp;
     }
     @DeleteMapping("/delete/{id}")
     public void delId(@PathVariable("id") int id) {
-        employeeService.deleteId(id);
+        ;
 
     }
     @PostMapping
@@ -67,9 +67,9 @@ public class EmployeeController {
     }
     @PutMapping("/{id}")
     public void updEmployee(@PathVariable int id, @RequestBody Employee employee) {
-        for (int i = 0; i < showCounter().size() ; i++) {
-            if (showCounter().get(i).getId() == id) {
-                showCounter().get(i).setName("Abba");
+        for (int i = 0; i < employeeService.getAllEmployees().size() ; i++) {
+            if (employeeService.getAllEmployees().get(i).getId() == id) {
+                employeeService.getAllEmployees().get(i).setName("Abba");
             }
 
             }

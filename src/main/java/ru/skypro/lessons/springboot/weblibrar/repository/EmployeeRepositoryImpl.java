@@ -72,10 +72,23 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         return nameavg;
     }
-    @Override
+   @Override
     public void deleteId(int id){
-        employeeList.removeIf(employee -> employee.getId() == id);
+        employeeList.removeIf(employeeList -> employeeList.getId() == id);
 }
+
+    @Override
+    public String getSearchId(int id){
+        String idf = "";
+        for (int i = 0; i < employeeList.size() ; i++) {
+            if (employeeList.get(i).getId() == id){
+                idf = employeeList.get(i).getName() + " " + employeeList.get(i).getSalary();
+            }
+        }
+        return idf;
+    }
+
+
 
 
 

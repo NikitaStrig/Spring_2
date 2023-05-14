@@ -16,4 +16,6 @@ public interface EmployeeRepository {
 
     void deleteId(int id);
 
+    String getSearchId(int id);
+
 }

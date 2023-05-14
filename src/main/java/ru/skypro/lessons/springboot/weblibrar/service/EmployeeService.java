@@ -11,6 +11,7 @@ public interface EmployeeService {
     int getSumAllSolary();
     String getHighSolary();
     void deleteId(int id);
+    String getSearchId(int id);
 
 
 }
