@@ -10,6 +10,10 @@ public class Employee {
         return id;
     }
 
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

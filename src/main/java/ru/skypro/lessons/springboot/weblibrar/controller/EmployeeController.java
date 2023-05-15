@@ -52,16 +52,14 @@ public class EmployeeController {
 
     }
     @PostMapping
-    public void addEmployee(@RequestBody Employee employee) {
+    public String addEmployee(@RequestBody Employee employee) {
+        return employeeService.addEmployee(employee);
     }
     @PutMapping("/{id}")
-    public void updEmployee(@PathVariable int id, @RequestBody Employee employee) {
-        for (int i = 0; i < employeeService.getAllEmployees().size() ; i++) {
-            if (employeeService.getAllEmployees().get(i).getId() == id) {
-                employeeService.getAllEmployees().get(i).setName("Abba");
-            }
+    public String updEmployee(@PathVariable int id, @RequestBody Employee employee) {
+        return employeeService.updateEmployee(employee,id);
 
-            }
-    }
+
+}
 
 }

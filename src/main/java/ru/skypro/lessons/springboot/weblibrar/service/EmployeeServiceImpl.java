@@ -3,7 +3,6 @@ package ru.skypro.lessons.springboot.weblibrar.service;
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrar.controller.Employee;
 import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepository;
-import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepositoryImpl;
 
 import java.util.List;
 
@@ -44,6 +43,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public String getsalaryHigherThan(int salary) {
         return employeeRepository.getsalaryHigherThan(salary);
+    }
+
+    @Override
+    public String addEmployee(Employee employee) {
+        return employeeRepository.addEmployee(employee);
+    }
+
+    @Override
+    public String updateEmployee(Employee employee, int id) {
+        return employeeRepository.updateEmployee(employee,id);
     }
 
 
