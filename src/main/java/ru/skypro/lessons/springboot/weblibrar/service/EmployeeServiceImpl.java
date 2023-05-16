@@ -29,6 +29,33 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.getSumAllSolary();
     }
     public String getHighSolary() {return employeeRepository.getHighSolary();}
+
+    @Override
+    public void deleteId(int id) {
+       employeeRepository.deleteId(id);
+    }
+
+    @Override
+    public String getSearchId(int id) {
+        return employeeRepository.getSearchId(id);
+    }
+
+    @Override
+    public String getsalaryHigherThan(int salary) {
+        return employeeRepository.getsalaryHigherThan(salary);
+    }
+
+    @Override
+    public String addEmployee(Employee employee) {
+        return employeeRepository.addEmployee(employee);
+    }
+
+    @Override
+    public String updateEmployee(Employee employee, int id) {
+        return employeeRepository.updateEmployee(employee,id);
+    }
+
+
 }
 
 

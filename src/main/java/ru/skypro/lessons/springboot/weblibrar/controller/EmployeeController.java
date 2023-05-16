@@ -1,11 +1,12 @@
 package ru.skypro.lessons.springboot.weblibrar.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ru.skypro.lessons.springboot.weblibrar.service.EmployeeService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/employee")
@@ -18,7 +19,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<Employee> showCounter() {
+    public List<Employee> getAllEmp() {
         return employeeService.getAllEmployees();
     }
     @GetMapping("/salary/max")
@@ -36,5 +37,29 @@ public class EmployeeController {
     @GetMapping("high-salary")
     public String hsalary() {return employeeService.getHighSolary();
     }
+    @GetMapping("/{id}")
+    public String getId(@PathVariable int id) {
+      return employeeService.getSearchId(id);
+
+    }
+    @GetMapping("/salaryHigherThan")
+    public String getEmployeesWithSalaryHigherThan(@RequestParam("salary") Integer salary) {
+        return employeeService.getsalaryHigherThan(salary);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void delId(@PathVariable("id") int id) {
+        employeeService.deleteId(id);
+
+    }
+    @PostMapping
+    public String addEmployee(@RequestBody Employee employee) {
+        return employeeService.addEmployee(employee);
+    }
+    @PutMapping("/{id}")
+    public String updEmployee(@PathVariable int id, @RequestBody Employee employee) {
+        return employeeService.updateEmployee(employee,id);
+
+
+}
 
 }
