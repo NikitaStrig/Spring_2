@@ -57,15 +57,10 @@ public class EmployeeController {
 
    }
     @GetMapping("/o3")
-    public List<EmployeeFullInfo> findAllEmployeeFullInfo(){
+    public List<EmployeeFullInfo> findAllEmployeeFullInfo() {
         return employeeService.findAllEmployeeFullInfo();
-    }
-
-//    @PutMapping("/{id}")
-//    public String updEmployee(@PathVariable int id, @RequestBody Employee employee) {
-//        return employeeService.updateEmployee(employee,id);
 
 
-//}
+}
 
 }
