@@ -2,8 +2,10 @@ package ru.skypro.lessons.springboot.weblibrar.service;
 
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrar.controller.Employee;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
 import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,48 +17,26 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.getAllEmployees();
+    public List<EmployeeDTO> getAllEmployees() {
+        List<Employee> resolt = new ArrayList<>();
+        employeeRepository.findAll()
+                .forEach(resolt::add);
+         return resolt.stream()
+                 .map(EmployeeDTO::fromEmployee)
+                 .toList();
     }
-
-    public String getMaxSolary() {
-        return employeeRepository.getMaxSolary();
-    }
-    public String getMinSolary() {
-        return employeeRepository.getMinSolary();
-    }
-    public int getSumAllSolary() {
-        return employeeRepository.getSumAllSolary();
-    }
-    public String getHighSolary() {return employeeRepository.getHighSolary();}
-
-    @Override
-    public void deleteId(int id) {
-       employeeRepository.deleteId(id);
+    public void addEmployee(Employee employee) {
+        employeeRepository.save(employee);
     }
 
     @Override
-    public String getSearchId(int id) {
-        return employeeRepository.getSearchId(id);
+    public List<EmployeeDTO> findWithHighestSalary(String name) {
+       return employeeRepository.findWithHighestSalary(name);
     }
-
-    @Override
-    public String getsalaryHigherThan(int salary) {
-        return employeeRepository.getsalaryHigherThan(salary);
-    }
-
-    @Override
-    public String addEmployee(Employee employee) {
-        return employeeRepository.addEmployee(employee);
-    }
-
-    @Override
-    public String updateEmployee(Employee employee, int id) {
-        return employeeRepository.updateEmployee(employee,id);
-    }
-
 
 }
+
+
 
 
 
