@@ -3,6 +3,8 @@ package ru.skypro.lessons.springboot.weblibrar.service;
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrar.controller.Employee;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeViewName;
 import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepository;
 
 import java.util.ArrayList;
@@ -30,10 +32,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDTO> findWithHighestSalary(String name) {
-       return employeeRepository.findWithHighestSalary(name);
-    }
+    public List<EmployeeViewName> findWithHighestSalary() {
+       return employeeRepository.findWithHighestSalary();
 
+        }
+    @Override
+    public  List<EmployeeFullInfo> findAllEmployeeFullInfo(){
+        return employeeRepository.findAllEmployeeFullInfo();
+
+    }
 }
 
 

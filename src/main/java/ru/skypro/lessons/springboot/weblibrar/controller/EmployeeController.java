@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeViewName;
 import ru.skypro.lessons.springboot.weblibrar.service.EmployeeService;
 
 import java.util.List;
@@ -41,8 +43,8 @@ public class EmployeeController {
 //    }
 
    @GetMapping("/salaryHigherThan")
-    public List<EmployeeDTO> withHighestSalary(String name){
-      return employeeService.findWithHighestSalary(name);
+    public List<EmployeeViewName> findWithHighestSalary(){
+      return employeeService.findWithHighestSalary();
    }
 //    @DeleteMapping("/delete/{id}")
 //    public void delId(@PathVariable("id") int id) {
@@ -54,6 +56,11 @@ public class EmployeeController {
          employeeService.addEmployee(employee);
 
    }
+    @GetMapping("/o3")
+    public List<EmployeeFullInfo> findAllEmployeeFullInfo(){
+        return employeeService.findAllEmployeeFullInfo();
+    }
+
 //    @PutMapping("/{id}")
 //    public String updEmployee(@PathVariable int id, @RequestBody Employee employee) {
 //        return employeeService.updateEmployee(employee,id);
