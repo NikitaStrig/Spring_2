@@ -1,5 +1,8 @@
 package ru.skypro.lessons.springboot.weblibrar.repository.DTO;
 
+import lombok.Data;
+
+@Data
 public class EmployeeFullInfo {
     // Имя сотрудника
     private String name;

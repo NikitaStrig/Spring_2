@@ -46,17 +46,13 @@ public class EmployeeController {
     public List<EmployeeViewName> findWithHighestSalary(){
       return employeeService.findWithHighestSalary();
    }
-//    @DeleteMapping("/delete/{id}")
-//    public void delId(@PathVariable("id") int id) {
-//        employeeService.deleteId(id);
-//
-//    }
+
    @PostMapping
       public void addEmployee(@RequestBody Employee employee) {
          employeeService.addEmployee(employee);
 
    }
-    @GetMapping("/o3")
+    @GetMapping("/pos")
     public List<EmployeeFullInfo> findAllEmployeeFullInfo() {
         return employeeService.findAllEmployeeFullInfo();
 

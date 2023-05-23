@@ -15,10 +15,10 @@ public interface EmployeeRepository extends CrudRepository<Employee, Integer>  {
         "where salary = (select max(salary) from employee)", nativeQuery = true)
 List<EmployeeViewName> findWithHighestSalary();
 
-    @Query(value = "SELECT new ru.skypro.lessons.springboot.weblibrar.repository.DTO." +
-            "EmployeeFullInfo(e.name , e.salary , p.positionName) " +
+    @Query("SELECT new ru.skypro.lessons.springboot.weblibrar.repository.DTO." +
+            "EmployeeFullInfo(e.name , e.salary , p.positioNname) " +
             "FROM Employee e join fetch Position p " +
-            "WHERE e.position = p", nativeQuery = true)
+            "WHERE e.position = p")
     List<EmployeeFullInfo> findAllEmployeeFullInfo();
 
 }

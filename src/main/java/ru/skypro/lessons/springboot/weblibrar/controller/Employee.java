@@ -20,7 +20,7 @@ public class Employee {
     private String name;
     private Integer salary;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "position_id")
     private Position position;
 }
