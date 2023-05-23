@@ -52,8 +52,8 @@ public class EmployeeController {
          employeeService.addEmployee(employee);
 
    }
-    @GetMapping("/{id}/fullInfo")
-    public List<EmployeeFullInfo> findAllEmployeeFullInfo(@PathVariable("id") Integer id) {
+    @GetMapping("/fullInfo")
+    public List<EmployeeFullInfo> findAllEmployeeFullInfo(@RequestParam("id") Integer id) {
         return employeeService.findAllEmployeeFullInfo(id);
 
 
