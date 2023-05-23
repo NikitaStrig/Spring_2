@@ -53,7 +53,7 @@ public class EmployeeController {
 
    }
     @GetMapping("/fullInfo")
-    public List<EmployeeFullInfo> findAllEmployeeFullInfo(@RequestParam("id") Integer id) {
+    public List<EmployeeFullInfo> findAllEmployeeFullInfo(@PathVariable("id") Integer id) {
         return employeeService.findAllEmployeeFullInfo(id);
 
 
