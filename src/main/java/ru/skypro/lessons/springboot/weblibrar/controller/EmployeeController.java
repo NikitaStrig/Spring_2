@@ -52,9 +52,9 @@ public class EmployeeController {
          employeeService.addEmployee(employee);
 
    }
-    @GetMapping("/pos")
-    public List<EmployeeFullInfo> findAllEmployeeFullInfo() {
-        return employeeService.findAllEmployeeFullInfo();
+    @GetMapping("/{id}/fullInfo")
+    public List<EmployeeFullInfo> findAllEmployeeFullInfo(@PathVariable("id") Integer id) {
+        return employeeService.findAllEmployeeFullInfo(id);
 
 
 }

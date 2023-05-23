@@ -12,5 +12,5 @@ public interface EmployeeService {
     void addEmployee(Employee employee);
     List<EmployeeViewName> findWithHighestSalary();
 
-    List<EmployeeFullInfo> findAllEmployeeFullInfo();
+    List<EmployeeFullInfo> findAllEmployeeFullInfo(Integer id);
 }
