@@ -5,11 +5,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeViewName;
 import ru.skypro.lessons.springboot.weblibrar.service.EmployeeService;
 
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.Objects.isNull;
+
 
 @RestController
 @RequestMapping("/employee")
@@ -52,11 +56,16 @@ public class EmployeeController {
          employeeService.addEmployee(employee);
 
    }
-    @GetMapping("/fullInfo")
+    @GetMapping("/{id}/fullInfo")
     public List<EmployeeFullInfo> findAllEmployeeFullInfo(@PathVariable("id") Integer id) {
         return employeeService.findAllEmployeeFullInfo(id);
-
-
 }
-
+    @GetMapping("/position")
+    public List<EmployeePosition> findAllEmployeePosition(@RequestParam("position") String positionName) {
+        if (isNull(positionName)) {
+            return employeeService.findAllEmployeeNoPosition();
+        }
+        else{
+            return employeeService.findAllEmployeePosition(positionName);}
+    }
 }

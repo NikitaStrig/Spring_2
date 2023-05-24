@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrar.controller.Employee;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeViewName;
 import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepository;
 
@@ -23,23 +24,35 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> resolt = new ArrayList<>();
         employeeRepository.findAll()
                 .forEach(resolt::add);
-         return resolt.stream()
-                 .map(EmployeeDTO::fromEmployee)
-                 .toList();
+        return resolt.stream()
+                .map(EmployeeDTO::fromEmployee)
+                .toList();
     }
+
     public void addEmployee(Employee employee) {
         employeeRepository.save(employee);
     }
 
     @Override
     public List<EmployeeViewName> findWithHighestSalary() {
-       return employeeRepository.findWithHighestSalary();
+        return employeeRepository.findWithHighestSalary();
 
-        }
+    }
+
     @Override
-    public  List<EmployeeFullInfo> findAllEmployeeFullInfo(Integer id){
+    public List<EmployeeFullInfo> findAllEmployeeFullInfo(Integer id) {
         return employeeRepository.findAllEmployeeFullInfo(id);
 
+    }
+
+    @Override
+    public List<EmployeePosition> findAllEmployeePosition(String positionName) {
+        return employeeRepository.findAllEmployeePosition(positionName);
+    }
+
+    @Override
+    public List<EmployeePosition> findAllEmployeeNoPosition() {
+        return employeeRepository.findAllEmployeeNoPosition();
     }
 }
 
