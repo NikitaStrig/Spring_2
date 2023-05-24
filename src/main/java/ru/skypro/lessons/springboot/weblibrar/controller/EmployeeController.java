@@ -62,7 +62,7 @@ public class EmployeeController {
 }
     @GetMapping("/position")
     public List<EmployeePosition> findAllEmployeePosition(@RequestParam("position") String positionName) {
-        if (isNull(positionName)) {
+        if (positionName =="") {
             return employeeService.findAllEmployeeNoPosition();
         }
         else{
