@@ -25,9 +25,9 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
- @GetMapping
+    @GetMapping
     public List<EmployeeDTO> getAllEmp() {
-       return employeeService.getAllEmployees();
+        return employeeService.getAllEmployees();
     }
 //    @GetMapping("/salary/max")
 //    public String max() {
@@ -46,26 +46,44 @@ public class EmployeeController {
 //     return employeeService.ffrr(name, salary);
 //    }
 
-   @GetMapping("/salaryHigherThan")
-    public List<EmployeeViewName> findWithHighestSalary(){
-      return employeeService.findWithHighestSalary();
-   }
+    @GetMapping("/salaryHigherThan")
+    public List<EmployeeViewName> findWithHighestSalary() {
+        return employeeService.findWithHighestSalary();
+    }
 
-   @PostMapping
-      public void addEmployee(@RequestBody Employee employee) {
-         employeeService.addEmployee(employee);
+    @PostMapping
+    public void addEmployee(@RequestBody Employee employee) {
+        employeeService.addEmployee(employee);
 
-   }
+    }
+
     @GetMapping("/{id}/fullInfo")
     public List<EmployeeFullInfo> findAllEmployeeFullInfo(@PathVariable("id") Integer id) {
         return employeeService.findAllEmployeeFullInfo(id);
-}
+    }
+
     @GetMapping("/position")
     public List<EmployeePosition> findAllEmployeePosition(@RequestParam("position") String positionName) {
-        if (positionName =="") {
+        if (positionName == "") {
             return employeeService.findAllEmployeeNoPosition();
+        } else {
+            return employeeService.findAllEmployeePosition(positionName);
         }
-        else{
-            return employeeService.findAllEmployeePosition(positionName);}
+    }
+
+    @GetMapping("/page")
+    public List<EmployeeViewName> findAllEmployeeFullInfoPage(@RequestParam("page") Integer page) {
+        int v = 3;
+        if (page == null) {
+            return employeeService.findAllEmployeeFullInfoNoPage();
+        }
+        if (page == 0) {
+            return employeeService.findAllEmployeeFullInfoNoPage();
+        }
+        else {
+            page = page * v;
+            return employeeService.findAllEmployeeFullInfoPage(page);
+        }
     }
 }
+

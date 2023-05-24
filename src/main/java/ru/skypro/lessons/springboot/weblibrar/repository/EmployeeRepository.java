@@ -26,6 +26,12 @@ List<EmployeeViewName> findWithHighestSalary();
     List<EmployeePosition> findAllEmployeeNoPosition();
 
 
+    @Query(value = "SELECT * FROM Employee e inner join  Position p on e.position_id = p.id where e.id > :page LIMIT 3",nativeQuery = true)
+    List<EmployeeViewName> findAllEmployeeFullInfoPage(@Param("page") int page);
+
+    @Query(value = "SELECT * FROM Employee e inner join  Position p on e.position_id = p.id LIMIT 3",nativeQuery = true)
+    List<EmployeeViewName> findAllEmployeeFullInfoNoPage();
+
 
 
 }

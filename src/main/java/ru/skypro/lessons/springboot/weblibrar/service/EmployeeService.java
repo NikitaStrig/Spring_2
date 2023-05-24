@@ -16,4 +16,6 @@ public interface EmployeeService {
     List<EmployeeFullInfo> findAllEmployeeFullInfo(Integer id);
     List<EmployeePosition> findAllEmployeePosition(String positionName);
     List<EmployeePosition> findAllEmployeeNoPosition();
+    public List<EmployeeViewName> findAllEmployeeFullInfoPage(int page);
+    public List<EmployeeViewName> findAllEmployeeFullInfoNoPage();
 }

@@ -54,6 +54,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeePosition> findAllEmployeeNoPosition() {
         return employeeRepository.findAllEmployeeNoPosition();
     }
+
+    @Override
+    public List<EmployeeViewName> findAllEmployeeFullInfoPage(int page) {
+        return employeeRepository.findAllEmployeeFullInfoPage(page);
+    }
+
+    @Override
+    public List<EmployeeViewName> findAllEmployeeFullInfoNoPage() {
+        return employeeRepository.findAllEmployeeFullInfoNoPage();
+    }
 }
 
 
