@@ -1,6 +1,13 @@
 package ru.skypro.lessons.springboot.weblibrar.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.apache.tomcat.jni.FileInfo;
+//import org.hamcrest.MatcherAssert;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.lessons.springboot.weblibrar.controller.Employee;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
@@ -8,6 +15,8 @@ import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeViewName;
 import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepository;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +39,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public void addEmployee(Employee employee) {
+        employeeRepository.save(employee);
+    }
+    public void addFile(Employee employee) {
         employeeRepository.save(employee);
     }
 
@@ -64,6 +76,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeViewName> findAllEmployeeFullInfoNoPage() {
         return employeeRepository.findAllEmployeeFullInfoNoPage();
     }
+
+    @Override
+    public List<Employee> parser() {
+        return null;
+    }
+
 }
 
 

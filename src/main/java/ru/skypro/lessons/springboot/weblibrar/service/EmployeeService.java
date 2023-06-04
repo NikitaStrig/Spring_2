@@ -18,4 +18,5 @@ public interface EmployeeService {
     List<EmployeePosition> findAllEmployeeNoPosition();
     public List<EmployeeViewName> findAllEmployeeFullInfoPage(int page);
     public List<EmployeeViewName> findAllEmployeeFullInfoNoPage();
+    List<Employee> parser();
 }

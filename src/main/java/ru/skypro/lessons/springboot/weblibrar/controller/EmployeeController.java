@@ -1,7 +1,10 @@
 package ru.skypro.lessons.springboot.weblibrar.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
@@ -9,10 +12,10 @@ import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeViewName;
 import ru.skypro.lessons.springboot.weblibrar.service.EmployeeService;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.*;
 
-import static java.util.Objects.isNull;
+import java.util.List;
+
 
 
 @RestController
@@ -29,22 +32,7 @@ public class EmployeeController {
     public List<EmployeeDTO> getAllEmp() {
         return employeeService.getAllEmployees();
     }
-//    @GetMapping("/salary/max")
-//    public String max() {
-//        return employeeService.getMaxSolary();
-//    }
-//    @GetMapping("/salary/min")
-//    public String min() {
-//        return employeeService.getMinSolary();
-//    }
-//    @GetMapping("/salary/sum")
-//    public int sum() {
-//        return employeeService.getSumAllSolary();
-//    }
-//    @GetMapping("/id")
-//    public List<EmployeeDTO> getId(String name, int salary) {
-//     return employeeService.ffrr(name, salary);
-//    }
+
 
     @GetMapping("/salaryHigherThan")
     public List<EmployeeViewName> findWithHighestSalary() {
@@ -85,5 +73,26 @@ public class EmployeeController {
             return employeeService.findAllEmployeeFullInfoPage(page);
         }
     }
-}
+
+  //  @PostMapping(value = "/upload")
+//    public Employee uploadFile() throws IOException {
+//        Employee employee = new Employee();
+//        JSONParser parser = new JSONParser();
+//        try(FileReader reader = new FileReader("test.json")) {
+//            JSONObject jsonObjectPars = (JSONObject) parser.parse(reader);
+//            JSONArray jsonArray = jsonObjectPars.get("")
+//        }
+//
+//
+//        catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//        return null;
+//    }
+
+       // }
+    }
+
+
+
 
