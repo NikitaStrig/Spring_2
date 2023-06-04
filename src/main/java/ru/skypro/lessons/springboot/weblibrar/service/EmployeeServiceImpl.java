@@ -1,9 +1,23 @@
 package ru.skypro.lessons.springboot.weblibrar.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.apache.tomcat.jni.FileInfo;
+//import org.hamcrest.MatcherAssert;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.lessons.springboot.weblibrar.controller.Employee;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeViewName;
 import ru.skypro.lessons.springboot.weblibrar.repository.EmployeeRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,48 +29,62 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.getAllEmployees();
+    public List<EmployeeDTO> getAllEmployees() {
+        List<Employee> resolt = new ArrayList<>();
+        employeeRepository.findAll()
+                .forEach(resolt::add);
+        return resolt.stream()
+                .map(EmployeeDTO::fromEmployee)
+                .toList();
     }
 
-    public String getMaxSolary() {
-        return employeeRepository.getMaxSolary();
+    public void addEmployee(Employee employee) {
+        employeeRepository.save(employee);
     }
-    public String getMinSolary() {
-        return employeeRepository.getMinSolary();
-    }
-    public int getSumAllSolary() {
-        return employeeRepository.getSumAllSolary();
-    }
-    public String getHighSolary() {return employeeRepository.getHighSolary();}
-
-    @Override
-    public void deleteId(int id) {
-       employeeRepository.deleteId(id);
+    public void addFile(Employee employee) {
+        employeeRepository.save(employee);
     }
 
     @Override
-    public String getSearchId(int id) {
-        return employeeRepository.getSearchId(id);
+    public List<EmployeeViewName> findWithHighestSalary() {
+        return employeeRepository.findWithHighestSalary();
+
     }
 
     @Override
-    public String getsalaryHigherThan(int salary) {
-        return employeeRepository.getsalaryHigherThan(salary);
+    public List<EmployeeFullInfo> findAllEmployeeFullInfo(Integer id) {
+        return employeeRepository.findAllEmployeeFullInfo(id);
+
     }
 
     @Override
-    public String addEmployee(Employee employee) {
-        return employeeRepository.addEmployee(employee);
+    public List<EmployeePosition> findAllEmployeePosition(String positionName) {
+        return employeeRepository.findAllEmployeePosition(positionName);
     }
 
     @Override
-    public String updateEmployee(Employee employee, int id) {
-        return employeeRepository.updateEmployee(employee,id);
+    public List<EmployeePosition> findAllEmployeeNoPosition() {
+        return employeeRepository.findAllEmployeeNoPosition();
     }
 
+    @Override
+    public List<EmployeeViewName> findAllEmployeeFullInfoPage(int page) {
+        return employeeRepository.findAllEmployeeFullInfoPage(page);
+    }
+
+    @Override
+    public List<EmployeeViewName> findAllEmployeeFullInfoNoPage() {
+        return employeeRepository.findAllEmployeeFullInfoNoPage();
+    }
+
+    @Override
+    public List<Employee> parser() {
+        return null;
+    }
 
 }
+
+
 
 
 

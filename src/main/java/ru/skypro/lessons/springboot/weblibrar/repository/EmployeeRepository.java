@@ -1,24 +1,46 @@
 package ru.skypro.lessons.springboot.weblibrar.repository;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import ru.skypro.lessons.springboot.weblibrar.controller.Employee;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition;
+import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeViewName;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 
-public interface EmployeeRepository {
-    public List<Employee> getAllEmployees();
+public interface EmployeeRepository extends CrudRepository<Employee, Integer>  {
+@Query(value = "select name from employee " +
+        "where salary = (select max(salary) from employee)", nativeQuery = true)
+List<EmployeeViewName> findWithHighestSalary();
 
-    String getMaxSolary();
+    @Query("SELECT new ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo(e.name , e.salary , p.positioNname) FROM Employee e inner join  Position p WHERE e.id = :id and e.position = p.id")
+    List<EmployeeFullInfo> findAllEmployeeFullInfo(@Param("id") Integer id);
 
-    String getMinSolary();
+    @Query("SELECT new ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition(e.name , e.salary , p.positioNname) FROM Employee e inner join  Position p WHERE p.positioNname = :positionName and e.position = p.id")
+    List<EmployeePosition> findAllEmployeePosition(@Param("positionName") String positionName);
 
-    int getSumAllSolary();
-    String getHighSolary();
+    @Query("SELECT new ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition(e.name , e.salary , p.positioNname)  FROM Employee e join fetch Position p WHERE e.position = p")
+    List<EmployeePosition> findAllEmployeeNoPosition();
 
-    void deleteId(int id);
 
-    String getSearchId(int id);
-    String getsalaryHigherThan(int salary);
-    String addEmployee (Employee employee);
-    String updateEmployee (Employee employee, int id);
+    @Query(value = "SELECT * FROM Employee e inner join  Position p on e.position_id = p.id where e.id > :page LIMIT 3",nativeQuery = true)
+    List<EmployeeViewName> findAllEmployeeFullInfoPage(@Param("page") int page);
+
+    @Query(value = "SELECT * FROM Employee e inner join  Position p on e.position_id = p.id LIMIT 3",nativeQuery = true)
+    List<EmployeeViewName> findAllEmployeeFullInfoNoPage();
+
 
 }
+
+
+
+
+
+
