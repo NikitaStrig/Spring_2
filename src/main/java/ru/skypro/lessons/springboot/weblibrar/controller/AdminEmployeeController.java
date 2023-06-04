@@ -12,5 +12,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/employees")
 public class AdminEmployeeController {
+    private final EmployeeService employeeService;
 
+    public AdminEmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
+
+    @GetMapping("/all")
+    public List<EmployeeDTO> getEmployees() {
+        return employeeService.getAllEmployees();
+    }
 }
