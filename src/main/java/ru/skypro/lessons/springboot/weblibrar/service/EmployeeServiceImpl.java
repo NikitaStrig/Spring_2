@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.tomcat.jni.FileInfo;
 //import org.hamcrest.MatcherAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +24,7 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     private final EmployeeRepository employeeRepository;
 
@@ -30,6 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<EmployeeDTO> getAllEmployees() {
+        logger.info("Вызван метод получения поллного списка сотрудников");
         List<Employee> resolt = new ArrayList<>();
         employeeRepository.findAll()
                 .forEach(resolt::add);
@@ -39,6 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public void addEmployee(Employee employee) {
+        logger.info("Вызван метод добавления нового сотрудника");
         employeeRepository.save(employee);
     }
     public void addFile(Employee employee) {
@@ -53,6 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeFullInfo> findAllEmployeeFullInfo(Integer id) {
+        logger.info("Вызван метод получения полной информации о сотркднике с ID " + id);
         return employeeRepository.findAllEmployeeFullInfo(id);
 
     }
