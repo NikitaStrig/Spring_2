@@ -13,7 +13,6 @@ import java.util.List;
 public class InfoController {
     @Value("${app.env}")
     private String apiKey;
-    private String url;
     @GetMapping
     public void info () {
         System.out.println(apiKey);
