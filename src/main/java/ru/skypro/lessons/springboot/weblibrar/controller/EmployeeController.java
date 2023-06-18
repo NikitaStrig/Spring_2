@@ -1,11 +1,11 @@
 package ru.skypro.lessons.springboot.weblibrar.controller;
 
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeDTO;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeeFullInfo;
 import ru.skypro.lessons.springboot.weblibrar.repository.DTO.EmployeePosition;
@@ -73,7 +73,9 @@ public class EmployeeController {
             page = page * v;
             return employeeService.findAllEmployeeFullInfoPage(page);
         }
-    }
+
+
+
 
   //  @PostMapping(value = "/upload")
 //    public Employee uploadFile() throws IOException {
@@ -92,6 +94,7 @@ public class EmployeeController {
 //    }
 
        // }
+    }
     }
 
 
